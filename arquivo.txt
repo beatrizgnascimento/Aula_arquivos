@@ -1,0 +1,91 @@
+Arquivos
+
+Coleção de bytes dispostos em um dispositivo de armazenamento secundário (disco rígido)
+
+
+Vantagens
+- Os dados permanecem disponíveis para o uso mesmo após a finalização do programa
+- Permitem armazenar uma grande quanidade de informações
+- Mais de um programa é capaz de acessar os dados simultaneamente
+- O acesso de dados pode ser sequencial ou não
+
+Biblioteca
+- stdio.h
+funções
+- foden: abrir Arquivos
+fclose: fechar
+fprint: escrever dentro de um arquivo de texto
+fscanf: ler o conteúdo do arquivo
+FILE *p referencia um arquivo (p)
+
+fopen
+- nome do arquivo 
+- modo de abertura
+  - r(read): abre o arquvio de texto para leitura e o arquivo deve existir
+  - w (write): abre arquivo de texto para escrita, cria o arquivo, se ele não existir
+    sobrescreve o arquivo (apaga o conteúdo) caso ele já exista
+- se retornar NULL - erro
+- retorna o ponteiro para o arquivo aberto
+
+fclose
+- sempre que o programa terminar de utilizar um arquivo, este deve ser fechado
+- apenas quando um arquivo é fechado que as modificações realizadas sobre ele são efetivamente gravadas
+parâmetro - arquivo que deve ser fechado
+
+fprint
+escrever dentro do texto
+fprintf(arq, "Expressao", Argumentos);
+Ar: arquivo trabalhado
+Expressão: identica à função printf, indica a mensagem ou formato dos dados a serem gravados
+ARgumentos: idênticos à função printf, lista de variáveis a serem armazenadas
+
+fscanf
+-recuperar dados dentro de arquivo de texto
+
+fscanf(arq, "Expressao", Argumentos);
+arq: arquivo desejado nome
+expressão: identica ao scanf %d %f etc 
+argumentos: identicos à scanf NAO ESQUECER DE &
+
+O que acontece se o programa que realizou a escrita for novamente executado?
+Dados anteriores são perdidos
+Para não perder nada, usar o modo de abertura do arquivo: "a";
+arq = fopen(banco.txt", "a);
+
+Tipos de arquivos: texto /binário
+texto: armazenam caracteres que podem ser mostrados diretamente na tela ou modificados por editor de texto
+binários: armazena uma sequência de bits que está sujeit à convenção dos programas que o gerou. 
+ - arquivos compactados, arquivos de registros etc
+
+ Operações sobre arquivos binários
+ - biblioteca stdio.h
+ -fopen
+ fclose
+ fwrite: escrever dentro de um arquivo de texto binário
+ fread: ler o conteúdo de um arquivo de texto binário
+ fseek: posiciona o ponteiro do arquivo na posição especificada
+
+ fopen: modos de abertura
+ -rb: abre o arquivo para leitura, arquivo deve existir
+ - wb: abre para escrita, cria o arq se nao existir, apaga se ja existir
+ ab: cria o arquivo se nao existir, adiciona dados no fim dor arquivo
+
+ fclose
+
+ fwrite e fread
+ - leem blocos de bytes
+ - manipula a informação como ela está disposta na memória
+
+ fwrite
+ fwrite(*ponteiro, tamanho em bytes, qte de elementos, *arq);
+
+ fread(*ponteiro, tamanho em bytes, quantidade, *arq);
+ ponteiro = tam*quantidade
+
+ fseek - desloca o ponteiro do arq para uma determinada posição
+ (*arq, num, ref);
+ *arq = ponteiro para o arquivo
+ num = numero de bytes a partir da origem
+ ref = posicao usada como referencia para o deslocamento de num bytes
+  SEEK_SET: início
+  SEEK_CUR: posicao atual do ponteiro
